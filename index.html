@@ -239,43 +239,78 @@
         </div>
     </section>
 
-    <!-- ==================== DONATE MODAL ==================== -->
+    <!-- ============================= Donate Modal ===============================
+      REPLACE the entire existing <div class="modal" id="donateModal"> ... </div>
+      block in index.html with this version.
+      New: donor name + email fields (Paystack requires an email),
+      and an inline error message area instead of alert().
+      ============================================================ -->
+
     <div class="modal" id="donateModal">
-        <div class="modal__overlay" id="modalOverlay"></div>
-        <div class="modal__content">
-            <button class="modal__close" id="modalClose">&times;</button>
-            <span class="section-header__badge">Make a Difference</span>
-            <h2 class="modal__title">Support Our Mission</h2>
-            <p class="modal__text">Choose an amount to donate. Every Naira transforms lives.</p>
-            
-            <div class="modal__amounts">
-                <button class="modal__amount" data-amount="5000">₦5,000</button>
-                <button class="modal__amount" data-amount="10000">₦10,000</button>
-                <button class="modal__amount modal__amount--active" data-amount="25000">₦25,000</button>
-                <button class="modal__amount" data-amount="50000">₦50,000</button>
-                <button class="modal__amount" data-amount="100000">₦100,000</button>
-            </div>
-            
-            <div class="modal__custom">
-                <label for="customAmount">Or enter a custom amount (₦):</label>
-                <input type="number" id="customAmount" class="modal__input" placeholder="Enter amount" min="1000">
-            </div>
-            
-            <div class="modal__frequency">
-                <label class="modal__radio">
-                    <input type="radio" name="frequency" value="once" checked> One-time donation
-                </label>
-                <label class="modal__radio">
-                    <input type="radio" name="frequency" value="monthly"> Monthly donation
-                </label>
-            </div>
-            
-            <button class="btn btn--primary btn--lg btn--block" id="donateSubmit">
-                Proceed to Payment <i class="fas fa-arrow-right"></i>
-            </button>
-            <p class="modal__secure"><i class="fas fa-lock"></i> Secured by SSL encryption. Your data is safe.</p>
+      <div class="modal__overlay" id="modalOverlay"></div>
+      <div class="modal__content">
+        <button class="modal__close" id="modalClose">&times;</button>
+        <span class="section-header__badge">Make a Difference</span>
+        <h2 class="modal__title">Support Our Mission</h2>
+        <p class="modal__text">Choose an amount to donate. Every Naira transforms lives.</p>
+
+        <div class="modal__amounts">
+            <button class="modal__amount" data-amount="5000">&#8358;5,000</button>
+            <button class="modal__amount" data-amount="10000">&#8358;10,000</button>
+            <button class="modal__amount modal__amount--active" data-amount="25000">&#8358;25,000</button>
+            <button class="modal__amount" data-amount="50000">&#8358;50,000</button>
+            <button class="modal__amount" data-amount="100000">&#8358;100,000</button>
         </div>
-    </div>
+
+        <div class="modal__custom">
+            <label for="customAmount">Or enter a custom amount (&#8358;):</label>
+            <input type="number" id="customAmount" class="modal__input" placeholder="Enter amount" min="1000">
+        </div>
+
+        <!-- NEW: donor details -->
+        <div class="modal__custom">
+            <label for="donorName">Your name</label>
+            <input type="text" id="donorName" class="modal__input" placeholder="Full name" autocomplete="name">
+        </div>
+        <div class="modal__custom">
+            <label for="donorEmail">Email address (for your receipt)</label>
+            <input type="email" id="donorEmail" class="modal__input" placeholder="you@example.com" autocomplete="email" required>
+        </div>
+
+        <div class="modal__frequency">
+            <label class="modal__radio">
+                <input type="radio" name="frequency" value="once" checked> One-time donation
+            </label>
+            <label class="modal__radio">
+                <input type="radio" name="frequency" value="monthly"> Monthly donation
+            </label>
+        </div>
+
+        <!-- NEW: inline error message -->
+        <p class="modal__error" id="donateError" hidden></p>
+
+        <button class="btn btn--primary btn--lg btn--block" id="donateSubmit">
+            Proceed to Payment <i class="fas fa-arrow-right"></i>
+        </button>
+        <p class="modal__secure"><i class="fas fa-lock"></i> Secured by Paystack. Your card details never touch our servers.</p>
+      </div>
+  </div>
+
+  <!-- ============================================================
+     ADD this to styles.css (anywhere in the MODAL section):
+
+  .modal__error {
+    background-color: #FDECEA;
+    color: #B3261E;
+    border: 1px solid #F5C6C0;
+    border-radius: var(--radius-sm);
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+     ============================================================ -->
 
     <!-- ==================== FOOTER ==================== -->
     <footer class="footer" id="contact">
