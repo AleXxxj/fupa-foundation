@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | FUPA Foundation Nigeria</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .thanks {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--clr-teal-dark) 0%, #1a3a30 50%, var(--clr-charcoal) 100%);
+            padding: 2rem 1.5rem;
+        }
+        .thanks__card {
+            background-color: var(--clr-white);
+            border-radius: var(--radius-lg);
+            padding: 3.5rem 3rem;
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        .thanks__icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background-color: rgba(45, 106, 92, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: var(--clr-teal);
+        }
+        .thanks__title {
+            font-family: var(--ff-heading);
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--clr-charcoal);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .thanks__text {
+            color: var(--clr-gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        .thanks__ref {
+            font-size: 0.8rem;
+            color: var(--clr-gray-light);
+            margin-top: 1.5rem;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <main class="thanks">
+        <div class="thanks__card">
+            <div class="thanks__icon"><i class="fas fa-heart"></i></div>
+            <span class="section-header__badge">Payment Received</span>
+            <h1 class="thanks__title">You Just Ignited Change.</h1>
+            <p class="thanks__text">
+                Thank you for your generosity. A receipt is on its way to your email.
+                Your support goes directly into education, health, and empowerment
+                programs across Nigeria.
+            </p>
+            <a href="/" class="btn btn--primary btn--lg">Back to Home</a>
+            <p class="thanks__ref" id="txRef"></p>
+        </div>
+    </main>
+    <script>
+        // Paystack appends ?trxref=...&reference=... to the callback URL
+        const params = new URLSearchParams(window.location.search);
+        const ref = params.get('reference') || params.get('trxref');
+        if (ref) {
+            document.getElementById('txRef').textContent = 'Reference: ' + ref;
+        }
+    </script>
+</body>
+</html>
